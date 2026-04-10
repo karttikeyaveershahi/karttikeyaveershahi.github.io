@@ -1,47 +1,668 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karttikeya | is-a-dev</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #0f172a;
-            color: #e2e8f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-        .container {
-            max-width: 600px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            color: #38bdf8;
-        }
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
-        .highlight {
-            color: #facc15;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karttikeya Veer Shahi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #161616;
+    --surface2: #1e1e1e;
+    --border: #2a2a2a;
+    --text: #f0ede8;
+    --muted: #888;
+    --accent: #c8f060;
+    --accent2: #f06060;
+    --mono: 'DM Mono', monospace;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'Instrument Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 2.5rem;
+    padding-top: 5rem;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-left {}
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-bio {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    padding: 0.75rem 1.75rem;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0d0d0d;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: #d4f570; transform: translateY(-1px); }
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .btn-secondary:hover { border-color: var(--muted); color: var(--text); }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 4px;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .skills-strip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    border-radius: 4px;
+  }
+  .skills-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .tag.hi { border-color: var(--accent); color: var(--accent); }
+
+  /* SECTION SHARED */
+  section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2.5rem;
+  }
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 2.25rem;
+    letter-spacing: -0.02em;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover { border-color: #444; transform: translateY(-2px); }
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .proj-meta {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  .proj-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .proj-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    background: var(--surface2);
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .proj-arrow {
+    font-size: 18px;
+    color: var(--muted);
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+  .project-card:hover .proj-arrow { color: var(--accent); transform: translate(2px, -2px); }
+
+  .proj-title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .proj-summary {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .proj-lang {
+    margin-top: 1.5rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .lang-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent2);
+  }
+  .lang-text {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 2rem; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    padding-top: 0.25rem;
+  }
+  .exp-company {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+  }
+  .exp-role {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+  .exp-desc {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .exp-desc li { margin-bottom: 0.4rem; padding-left: 1rem; position: relative; list-style: none; }
+  .exp-desc li::before { content: '—'; position: absolute; left: 0; color: var(--border); }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .contact-big {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .contact-big em { font-style: italic; color: var(--accent); }
+  .contact-links { display: flex; flex-direction: column; gap: 1.25rem; }
+  .contact-link {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); }
+  .contact-link-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+  .contact-link-val { font-size: 14px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-txt {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .hero { grid-template-columns: 1fr; gap: 3rem; padding: 2rem 1.25rem; padding-top: 6rem; }
+    .hero-right { display: none; }
+    section { padding: 4rem 1.25rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hi, I'm Karttikeya 👋</h1>
-        <p>
-            This is my <span class="highlight">is-a-dev</span> page where I will showcase my projects and skills.
-        </p>
-        <p>
-            Think of it like a <span class="highlight">resume on the web!</span>
-        </p>
+
+<nav>
+  <a class="nav-logo" href="index.html">KVS</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Data Science & Engineering</p>
+    <h1 class="hero-name">Karttikeya<br><em>Veer Shahi</em></h1>
+    <p class="hero-bio">
+      Final-year student at Manipal Institute of Technology building things at the intersection of Machine Learning, Deep Learning, and systems engineering.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
     </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Internships</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Projects</div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">2025</div>
+        <div class="stat-label">Graduating</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">MIT</div>
+        <div class="stat-label">Manipal</div>
+      </div>
+    </div>
+    <div class="skills-strip">
+      <div class="skills-label">Core skills</div>
+      <div class="tags">
+        <span class="tag hi">Machine Learning</span>
+        <span class="tag hi">Deep Learning</span>
+        <span class="tag hi">LLMs</span>
+        <span class="tag">C/C++</span>
+        <span class="tag">Python</span>
+        <span class="tag">Reinforcement Learning</span>
+        <span class="tag">Computer Networks</span>
+        <span class="tag">DSA</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Featured: Mini Search Engine -->
+    <a href="project-search-engine.html" class="project-card featured reveal">
+      <div>
+        <div class="proj-meta">
+          <div class="proj-tags">
+            <span class="proj-tag">Systems</span>
+            <span class="proj-tag">C++</span>
+            <span class="proj-tag">Algorithms</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+        <h3 class="proj-title">Mini Search Engine</h3>
+        <p class="proj-summary">
+          A full search engine built from scratch in C++ — no STL. Trie-based inverted index, BM25 ranking, and top-K retrieval.
+        </p>
+        <div class="proj-lang">
+          <div class="lang-dot" style="background:#5595dd"></div>
+          <span class="lang-text">C++</span>
+        </div>
+      </div>
+      <div>
+        <div style="background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; font-family: var(--mono); font-size: 12px; color: var(--muted); line-height: 1.9;">
+          <span style="color: #888">// Okapi BM25 scoring</span><br>
+          <span style="color: var(--accent)">score</span>(D, Q) = Σ IDF(qᵢ) ·<br>
+          &nbsp;&nbsp;tf(qᵢ, D) · (k₁ + 1)<br>
+          &nbsp;&nbsp;─────────────────────<br>
+          &nbsp;&nbsp;tf(qᵢ, D) + k₁ · (1 − b<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;+ b · |D| / avgdl)
+        </div>
+      </div>
+    </a>
+
+    <!-- Tumor Detection -->
+    <a href="project-tumor.html" class="project-card reveal">
+      <div class="proj-meta">
+        <div class="proj-tags">
+          <span class="proj-tag">Deep Learning</span>
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">CNN</span>
+        </div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <h3 class="proj-title">Tumor Detection App</h3>
+      <p class="proj-summary">
+        CNN-powered application that classifies brain MRI scans as tumorous or healthy, with a Streamlit interface for easy use.
+      </p>
+      <div class="proj-lang">
+        <div class="lang-dot" style="background:#f0a060"></div>
+        <span class="lang-text">Python · Streamlit</span>
+      </div>
+    </a>
+
+    <!-- TCP GroupChat -->
+    <a href="project-groupchat.html" class="project-card reveal">
+      <div class="proj-meta">
+        <div class="proj-tags">
+          <span class="proj-tag">Networking</span>
+          <span class="proj-tag">C</span>
+          <span class="proj-tag">Node.js</span>
+        </div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <h3 class="proj-title">TCP–HTTP GroupChat</h3>
+      <p class="proj-summary">
+        Async, event-driven group chat server using non-blocking sockets, I/O multiplexing, and a Node.js HTTP/WebSocket bridge for browser clients.
+      </p>
+      <div class="proj-lang">
+        <div class="lang-dot" style="background:#a0d060"></div>
+        <span class="lang-text">C · HTML · JS</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-date">Feb 2025 – Aug 2025<br><br>Bangalore, India</div>
+      <div>
+        <div class="exp-company">Pixxel</div>
+        <div class="exp-role">Research Intern</div>
+        <ul class="exp-desc">
+          <li>Developed and optimized geospatial analysis models using ML and Deep Learning techniques.</li>
+          <li>Contributed to satellite imagery analysis pipelines for scalable, efficient remote sensing data interpretation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">May 2024 – July 2024<br><br>Noida, India</div>
+      <div>
+        <div class="exp-company">IDEMIA</div>
+        <div class="exp-role">Software Dev Intern</div>
+        <ul class="exp-desc">
+          <li>Built an interactive LLM-powered application (Gemini) to provide easy access to product information.</li>
+          <li>Created a web page to store user data and query history, integrated with the LLM application.</li>
+          <li>Product under testing for deployment to clients.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">June 2023 – July 2023<br><br>Noida, India</div>
+      <div>
+        <div class="exp-company">Network 18</div>
+        <div class="exp-role">AI-ML Intern</div>
+        <ul class="exp-desc">
+          <li>Built a Streamlit UI integrating Falcon-7B-Instruct LLM for news headline generation from articles.</li>
+          <li>Optimized a model for identifying company logos in website advertisements.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Contact</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="reveal">
+      <p class="contact-big">Let's build something <em>interesting</em> together.</p>
+    </div>
+    <div class="contact-links reveal">
+      <a href="mailto:karttikeyashahi@gmail.com" class="contact-link">
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-val">karttikeyashahi@gmail.com</div>
+        </div>
+        <span style="color: var(--muted)">↗</span>
+      </a>
+      <a href="https://linkedin.com/in/karttikeyaveershahi" target="_blank" class="contact-link">
+        <div>
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-val">linkedin.com/in/karttikeyaveershahi</div>
+        </div>
+        <span style="color: var(--muted)">↗</span>
+      </a>
+      <a href="tel:+918450993992" class="contact-link">
+        <div>
+          <div class="contact-link-label">Phone</div>
+          <div class="contact-link-val">+91 84509 93992</div>
+        </div>
+        <span style="color: var(--muted)">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-txt">© 2025 Karttikeya Veer Shahi</span>
+  <span class="footer-txt">Mumbai, Maharashtra</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
