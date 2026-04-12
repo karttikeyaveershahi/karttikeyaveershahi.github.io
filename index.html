@@ -75,7 +75,6 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-  .hero-left {}
   .hero-tag {
     font-family: var(--mono);
     font-size: 11px;
@@ -163,6 +162,12 @@
     color: var(--muted);
     letter-spacing: 0.08em;
     text-transform: uppercase;
+  }
+  .stat-card.wide {
+    grid-column: 1 / -1;
+  }
+  .stat-num.small {
+    font-size: 1.4rem;
   }
   .skills-strip {
     background: var(--surface);
@@ -432,7 +437,7 @@
     <p class="hero-tag">Data Science & Engineering</p>
     <h1 class="hero-name">Karttikeya<br><em>Veer Shahi</em></h1>
     <p class="hero-bio">
-      Graduate from Manipal Institute of Technology building things at the intersection of Machine Learning, Deep Learning, and core CS fundamentals.
+      Final-year student at Manipal Institute of Technology building things at the intersection of Machine Learning, Deep Learning, and systems engineering.
     </p>
     <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -447,17 +452,23 @@
       </div>
       <div class="stat-card">
         <div class="stat-num">3</div>
-        <div class="stat-label">Projects and counting!</div>
+        <div class="stat-label">Projects</div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card wide">
+        <div class="stat-num small">Jr. Engineer</div>
+        <div class="stat-label">AI for Space · Bellatrix Aerospace</div>
       </div>
     </div>
     <div class="stat-row">
       <div class="stat-card">
-        <div class="stat-num">Junior Engineer - AI for Space</div>
-        <div class="stat-label">Bellatrix Aerospace</div>
-      </div>
-      <div class="stat-card">
         <div class="stat-num">MIT</div>
         <div class="stat-label">Manipal</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">B.Tech</div>
+        <div class="stat-label">Data Science</div>
       </div>
     </div>
     <div class="skills-strip">
@@ -471,6 +482,8 @@
         <span class="tag">Reinforcement Learning</span>
         <span class="tag">Computer Networks</span>
         <span class="tag">DSA</span>
+        <span class="tag">Computer Organization & Architecture</span>
+        <span class="tag">Operating Systems</span>
       </div>
     </div>
   </div>
@@ -650,8 +663,8 @@
 </section>
 
 <footer>
-  <span class="footer-txt">© 2025 Karttikeya Veer Shahi</span>
-  <span class="footer-txt">Mumbai, Maharashtra</span>
+  <span class="footer-txt">© 2026 Karttikeya Veer Shahi</span>
+  <span class="footer-txt">Bangalore, Karnataka</span>
 </footer>
 
 <script>
