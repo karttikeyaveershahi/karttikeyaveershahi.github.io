@@ -16,7 +16,10 @@
     --serif: 'DM Serif Display', serif;
     --sans: 'Instrument Sans', sans-serif;
   }
+
+  html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.65; }
+
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
@@ -29,58 +32,122 @@
   .nav-back { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
   .nav-back:hover { color: var(--text); }
 
-  .proj-hero {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 9rem 2.5rem 4rem;
-  }
+  .proj-hero { max-width: 860px; margin: 0 auto; padding: 9rem 2.5rem 4rem; }
   .proj-kicker {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    font-family: var(--mono); font-size: 11px; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;
     display: flex; align-items: center; gap: 0.75rem;
   }
   .proj-kicker::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent); }
   .proj-hero h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 1.5rem; }
   .proj-hero h1 em { font-style: italic; color: var(--accent); }
-  .proj-meta-row {
-    display: flex; gap: 2rem; flex-wrap: wrap;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .proj-meta-item { }
+  .proj-meta-row { display: flex; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 2rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
   .proj-meta-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
   .proj-meta-val { font-size: 14px; color: var(--text); }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+  .tag { font-family: var(--mono); font-size: 11px; padding: 0.3rem 0.75rem; border: 1px solid var(--border); border-radius: 2px; color: var(--muted); letter-spacing: 0.04em; }
 
-  .proj-body { max-width: 900px; margin: 0 auto; padding: 0 2.5rem 6rem; }
-  .content-placeholder {
-    background: var(--surface);
-    border: 1px dashed var(--border);
-    border-radius: 4px;
-    padding: 4rem 2rem;
-    text-align: center;
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 13px;
-    line-height: 2;
+  .proj-body { max-width: 860px; margin: 0 auto; padding: 0 2.5rem 7rem; }
+
+  .proj-body h2 {
+    font-family: var(--serif); font-size: 1.9rem; letter-spacing: -0.02em;
+    margin-top: 4rem; margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.75rem;
   }
-  .content-placeholder span { color: var(--accent); }
+  .h2-num { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; font-weight: 400; }
+  .proj-body h3 { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2.5rem; margin-bottom: 1rem; }
+  .proj-body p { color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 1rem; }
+  .proj-body ul, .proj-body ol { color: var(--muted); font-size: 15px; line-height: 1.8; padding-left: 0; margin-bottom: 1rem; list-style: none; }
+  .proj-body ul li, .proj-body ol li { padding-left: 1.25rem; margin-bottom: 0.4rem; position: relative; }
+  .proj-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--border); }
+  .proj-body ol { counter-reset: ol-counter; }
+  .proj-body ol li::before { counter-increment: ol-counter; content: counter(ol-counter) '.'; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); font-size: 12px; }
 
-  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
-  .tag {
-    font-family: var(--mono); font-size: 11px; padding: 0.3rem 0.75rem;
-    border: 1px solid var(--border); border-radius: 2px; color: var(--muted);
+  pre {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+    padding: 1.5rem; overflow-x: auto; margin: 1.25rem 0 1.75rem;
+  }
+  pre code { font-family: var(--mono); font-size: 12.5px; line-height: 1.75; color: #c9c5bc; }
+  .code-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+  .proj-body p code, .proj-body li code, td code {
+    font-family: var(--mono); font-size: 12px; background: var(--surface2);
+    border: 1px solid var(--border); padding: 0.1rem 0.4rem; border-radius: 2px; color: var(--accent);
   }
 
-  footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; }
+  .pipeline {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+    padding: 2rem; margin: 1.25rem 0 1.75rem;
+    display: flex; align-items: center; flex-wrap: wrap; overflow-x: auto; gap: 0;
+  }
+  .pipe-step { display: flex; align-items: center; gap: 0; }
+  .pipe-box {
+    font-family: var(--mono); font-size: 11px; padding: 0.6rem 1rem;
+    border: 1px solid var(--border); border-radius: 3px; color: var(--text);
+    white-space: nowrap; background: var(--surface2);
+  }
+  .pipe-box.accent { border-color: var(--accent); color: var(--accent); }
+  .pipe-arrow { font-family: var(--mono); font-size: 13px; color: var(--muted); padding: 0 0.5rem; }
+
+  .table-wrap { overflow-x: auto; margin: 1.25rem 0 1.75rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  thead th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+  tbody td { padding: 0.75rem 1rem; border-bottom: 1px solid #1e1e1e; color: var(--muted); vertical-align: top; }
+  tbody td:first-child { color: var(--text); font-family: var(--mono); font-size: 13px; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--surface); }
+
+  .formula-box {
+    background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+    border-radius: 4px; padding: 1.5rem 2rem; margin: 1.25rem 0 1.75rem;
+    font-family: var(--mono); font-size: 13px; line-height: 2.2; color: #c9c5bc;
+  }
+  .f-accent { color: var(--accent); }
+  .f-muted { color: var(--muted); }
+
+  .callout {
+    background: rgba(200,240,96,0.04); border: 1px solid rgba(200,240,96,0.2);
+    border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.25rem 0;
+    color: #c9c5bc; font-size: 14px; line-height: 1.75;
+  }
+  .callout strong { color: var(--accent); font-weight: 500; }
+
+  .terminal { background: #0a0a0a; border: 1px solid var(--border); border-radius: 4px; margin: 1.25rem 0 1.75rem; overflow: hidden; }
+  .terminal-bar { background: var(--surface2); border-bottom: 1px solid var(--border); padding: 0.6rem 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #f06060; } .dot-y { background: #f0c060; } .dot-g { background: var(--accent); }
+  .terminal-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; margin-left: auto; }
+  .terminal pre { border: none; border-radius: 0; background: transparent; margin: 0; padding: 1.5rem; }
+  .terminal pre code { font-size: 12px; }
+  .t-prompt { color: var(--accent); } .t-cmd { color: var(--text); } .t-out { color: var(--muted); } .t-hi { color: #f0c060; }
+
+  .filetree {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+    padding: 1.5rem; margin: 1.25rem 0 1.75rem;
+    font-family: var(--mono); font-size: 12.5px; line-height: 2; color: var(--muted); overflow-x: auto;
+  }
+  .ft-dir { color: var(--text); } .ft-hi { color: var(--accent); } .ft-comment { color: #555; }
+
+  .improvements { display: flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0 1.75rem; }
+  .imp-item { display: flex; align-items: flex-start; gap: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.25rem; }
+  .imp-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--accent); border: 1px solid rgba(200,240,96,0.3); padding: 0.2rem 0.5rem; border-radius: 2px; white-space: nowrap; flex-shrink: 0; }
+  .imp-text { color: var(--muted); font-size: 14px; line-height: 1.6; }
+  .imp-text strong { color: var(--text); font-weight: 500; }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; max-width: 860px; margin: 0 auto; }
   .footer-txt { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
   .proj-nav { display: flex; gap: 1rem; }
   .proj-nav a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
   .proj-nav a:hover { color: var(--accent); }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.45s ease, transform 0.45s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .proj-hero, .proj-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem 1.25rem; }
+  }
 </style>
 </head>
 <body>
@@ -103,8 +170,12 @@
       <div class="proj-meta-val">Systems · Information Retrieval</div>
     </div>
     <div class="proj-meta-item">
-      <div class="proj-meta-label">Key concepts</div>
-      <div class="proj-meta-val">Trie, Inverted Index, BM25</div>
+      <div class="proj-meta-label">Key Concepts</div>
+      <div class="proj-meta-val">Trie · Inverted Index · BM25</div>
+    </div>
+    <div class="proj-meta-item">
+      <div class="proj-meta-label">Author</div>
+      <div class="proj-meta-val">Karttikeya Veer Shahi</div>
     </div>
   </div>
   <div class="tags">
@@ -114,24 +185,299 @@
     <span class="tag">BM25</span>
     <span class="tag">Information Retrieval</span>
     <span class="tag">Data Structures</span>
+    <span class="tag">CLI</span>
+    <span class="tag">No STL</span>
   </div>
 </div>
 
 <div class="proj-body">
-  <div class="content-placeholder">
-    <span>// Content coming soon</span><br><br>
-    This page is ready for your project details.<br>
-    Send me: overview, architecture, challenges, screenshots, demo links, etc.<br><br>
-    <span>→ karttikeyashahi@gmail.com</span>
+
+  <div class="callout reveal">
+    A fully functional search engine built from scratch in C++ — featuring a <strong>Trie-based inverted index</strong>, <strong>BM25 relevance ranking</strong>, stop word filtering, document previews, and an interactive CLI. Zero STL usage.
   </div>
+
+  <!-- 01 STRUCTURE -->
+  <h2 class="reveal"><span class="h2-num">01</span> Project Structure</h2>
+  <div class="filetree reveal">
+    <span class="ft-dir">MiniSearchEngine/</span><br>
+    ├── bin/<br>
+    │&nbsp;&nbsp;&nbsp;└── mini_search<br>
+    ├── data/<br>
+    │&nbsp;&nbsp;&nbsp;└── <span class="ft-hi">docs.txt</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment">← input documents (one per line)</span><br>
+    └── src/<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="ft-hi">main.cpp</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment">← entry point</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── parser/<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── document.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment">← Document struct</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── parser.h / .cpp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment">← parser declaration + impl</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── stopwords.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment">← stop words set + filter fn</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── index/<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── posting.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment">← Posting struct</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── trienode.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment">← TrieNode struct</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── trie.h / .cpp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment">← insert, search, delete</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── ranking/<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── bm25.h / .cpp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment">← BM25 score computation</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── search/<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── search.h / .cpp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment">← search logic + result printing</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;└── cli/<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── commandloop.h / .cpp&nbsp;<span class="ft-comment">← interactive CLI</span>
+  </div>
+
+  <!-- 02 HOW IT WORKS -->
+  <h2 class="reveal"><span class="h2-num">02</span> How It Works</h2>
+  <p class="reveal">When the program starts, it runs through a four-stage pipeline before the CLI becomes interactive:</p>
+  <div class="pipeline reveal">
+    <div class="pipe-step"><div class="pipe-box accent">docs.txt</div><div class="pipe-arrow">→</div></div>
+    <div class="pipe-step"><div class="pipe-box">Parser</div><div class="pipe-arrow">→</div></div>
+    <div class="pipe-step"><div class="pipe-box">Trie + Inverted Index</div><div class="pipe-arrow">→</div></div>
+    <div class="pipe-step"><div class="pipe-box">BM25 Scorer</div><div class="pipe-arrow">→</div></div>
+    <div class="pipe-step"><div class="pipe-box accent">Top-K Results</div></div>
+  </div>
+  <ol class="reveal">
+    <li><strong style="color:var(--text)">Parser</strong> reads <code>docs.txt</code>, normalizes words, filters stop words, and loads documents into memory.</li>
+    <li><strong style="color:var(--text)">Trie</strong> is built by inserting every word from every document, creating the inverted index.</li>
+    <li><strong style="color:var(--text)">CLI</strong> starts and waits for user commands.</li>
+    <li>On <code>/search</code>, query words are looked up in the Trie, BM25 scores are accumulated per document, sorted and returned.</li>
+  </ol>
+
+  <!-- 03 DATA STRUCTURES -->
+  <h2 class="reveal"><span class="h2-num">03</span> Core Data Structures</h2>
+
+  <h3 class="reveal">Document</h3>
+  <p class="reveal">Represents one document loaded from <code>docs.txt</code>. Stores a numeric ID and a vector of normalized, filtered words.</p>
+  <pre class="reveal"><code><span style="color:#555">// parser/document.h</span>
+struct Document {
+    int id;                           <span style="color:#555">// document ID (first token on each line)</span>
+    std::vector&lt;std::string&gt; words;   <span style="color:#555">// normalized, filtered words</span>
+};</code></pre>
+
+  <h3 class="reveal">Posting</h3>
+  <p class="reveal">A single node in a postings list — the fundamental unit of the inverted index. Each word in the Trie has a linked list of Postings tracking which documents contain it and how often.</p>
+  <pre class="reveal"><code><span style="color:#555">// index/posting.h</span>
+struct Posting {
+    int docID;      <span style="color:#555">// which document contains this word</span>
+    int termFreq;   <span style="color:#555">// how many times the word appears in that document</span>
+    Posting* next;  <span style="color:#555">// pointer to the next posting (linked list)</span>
+};
+
+<span style="color:#555">// Example postings lists:</span>
+<span style="color:#c8f060">"spears"</span> → [docID:0, TF:5] → nullptr
+<span style="color:#c8f060">"rapper"</span> → [docID:1, TF:3] → [docID:7, TF:1] → nullptr</code></pre>
+
+  <h3 class="reveal">TrieNode</h3>
+  <p class="reveal">One node in the Trie. Every path from root to a leaf spells out a word. Leaf nodes hold the postings list for that word.</p>
+  <pre class="reveal"><code><span style="color:#555">// index/trienode.h</span>
+struct TrieNode {
+    TrieNode* children[26];  <span style="color:#555">// one child per letter a–z</span>
+    Posting* postingsList;   <span style="color:#555">// non-null only at end-of-word nodes</span>
+    bool isEndOfWord;
+};</code></pre>
+
+  <h3 class="reveal">SearchResult</h3>
+  <p class="reveal">Holds one document's final BM25 score after a query is processed.</p>
+  <pre class="reveal"><code><span style="color:#555">// search/search.h</span>
+struct SearchResult {
+    int docID;
+    double score;
+};</code></pre>
+
+  <!-- 04 COMPONENTS -->
+  <h2 class="reveal"><span class="h2-num">04</span> Component Details</h2>
+
+  <h3 class="reveal">Parser</h3>
+  <p class="reveal">Reads <code>docs.txt</code> line by line, extracts the document ID from the first token, lowercases and strips non-alphabetic characters from each word, then filters stop words before storing. <code>stopwords.h</code> contains a hardcoded set of ~80 common English words excluded from the index entirely.</p>
+  <pre class="reveal"><code><span style="color:#555">// stop word filtering during ingestion (parser.cpp)</span>
+auto stopWords = getStopWords();
+<span style="color:#555">// ...</span>
+if (!word.empty() && !isStopWord(word, stopWords))
+    doc.words.push_back(word);</code></pre>
+
+  <h3 class="reveal">Trie + Inverted Index</h3>
+  <p class="reveal">The Trie <em>is</em> the inverted index — they are not two separate structures. Each leaf holds the postings list for that word.</p>
+  <ul class="reveal">
+    <li><strong style="color:var(--text)">Insertion</strong> — traverses character by character, creating nodes as needed. At the end node, increments <code>termFreq</code> if the doc already has a posting, otherwise prepends a new <code>Posting</code> node.</li>
+    <li><strong style="color:var(--text)">Search</strong> — traverses and returns the postings list at the end node, or <code>nullptr</code> if not found. Time complexity: <strong style="color:var(--accent)">O(M)</strong> where M = word length.</li>
+  </ul>
+  <div class="callout reveal">
+    <strong>Why a Trie instead of a HashMap?</strong> A Trie supports prefix searches and autocomplete natively. It's also more memory-efficient when many words share common prefixes — those characters are stored once, not duplicated per key as in a HashMap.
+  </div>
+
+  <!-- 05 BM25 -->
+  <h2 class="reveal"><span class="h2-num">05</span> BM25 Ranking</h2>
+  <p class="reveal">BM25 (Best Match 25) is the industry-standard ranking function used by search engines like Elasticsearch and Apache Solr.</p>
+  <div class="formula-box reveal">
+    <span class="f-muted">// Score for a single word in a document</span><br>
+    <span class="f-accent">Score</span>(doc, word) = IDF(word) × TF_normalized(doc, word)<br><br>
+    <span class="f-muted">// Inverse Document Frequency — penalizes common words</span><br>
+    <span class="f-accent">IDF</span>(word) = log( (N − n + 0.5) / (n + 0.5) + 1 )<br><br>
+    <span class="f-muted">// TF with saturation + length normalization</span><br>
+    <span class="f-accent">TF_norm</span> =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TF × (k₁ + 1)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;──────────────────────────────────────────<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TF + k₁ × (1 − b + b × (docLen / avgLen))<br><br>
+    <span class="f-muted">// Multi-word query: accumulate scores across all terms</span><br>
+    <span class="f-accent">Score</span>(doc, query) = Σ Score(doc, wordᵢ)
+  </div>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>N</code></td><td>Total number of documents</td></tr>
+        <tr><td><code>n</code></td><td>Number of documents containing the word</td></tr>
+        <tr><td><code>TF</code></td><td>How many times the word appears in this document</td></tr>
+        <tr><td><code>docLen</code></td><td>Total words in this document</td></tr>
+        <tr><td><code>avgLen</code></td><td>Average words per document across all docs</td></tr>
+        <tr><td><code>k₁ = 1.2</code></td><td>TF saturation — controls diminishing returns on repetition</td></tr>
+        <tr><td><code>b = 0.75</code></td><td>Document length normalization strength</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="reveal">
+    <li><strong style="color:var(--text)">IDF</strong> — penalizes common words. A word appearing in every document scores near 0; a rare word scores high.</li>
+    <li><strong style="color:var(--text)">TF normalization</strong> — rewards repetition with diminishing returns. 10 occurrences beats 1, but not by 10×.</li>
+    <li><strong style="color:var(--text)">Length normalization</strong> — prevents long documents from dominating simply by containing more words.</li>
+  </ul>
+
+  <!-- 06 SEARCH LOGIC -->
+  <h2 class="reveal"><span class="h2-num">06</span> Search Engine Logic</h2>
+  <p class="reveal">The <code>search()</code> function runs in seven steps:</p>
+  <ol class="reveal">
+    <li>Tokenize the query string into individual lowercase words</li>
+    <li>Compute <code>avgDocLen</code> across all documents</li>
+    <li>Build a <code>docID → docLen</code> map for fast lookup</li>
+    <li>For each query word: look up in Trie → count <code>n</code> for IDF → walk postings list → compute BM25 → accumulate into scores map</li>
+    <li>Convert scores map into a <code>vector&lt;SearchResult&gt;</code></li>
+    <li>Sort by score descending</li>
+    <li>Trim to top-K and return</li>
+  </ol>
+  <p class="reveal"><code>getPreview()</code> returns the first 100 words of a document as a readable preview, appending <code>"..."</code> if truncated.</p>
+
+  <!-- 07 CLI -->
+  <h2 class="reveal"><span class="h2-num">07</span> CLI Commands</h2>
+  <p class="reveal"><code>startCommandLoop()</code> runs an infinite loop parsing the first token of each line as a command:</p>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>Command</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><code>/search word1 word2 ...</code></td><td>Runs BM25 search, prints top-K results with previews</td></tr>
+        <tr><td><code>/df word</code></td><td>Document frequency — how many docs contain this word</td></tr>
+        <tr><td><code>/tf docID word</code></td><td>Term frequency — how many times word appears in that doc</td></tr>
+        <tr><td><code>/help</code></td><td>Prints the command reference</td></tr>
+        <tr><td><code>/exit</code></td><td>Gracefully exits the program</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 08 DEMO -->
+  <h2 class="reveal"><span class="h2-num">08</span> Example Session</h2>
+  <div class="terminal reveal">
+    <div class="terminal-bar">
+      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+      <span class="terminal-label">minisearch · demo</span>
+    </div>
+    <pre><code><span class="t-out">Loading documents...
+Parsed 11 documents.
+
+Building index...
+Index built successfully for 11 documents.
+
+=============================================
+   Veer's Mini Search Engine - Ready to Search
+=============================================
+</span>
+<span class="t-prompt">&gt;</span> <span class="t-cmd">/search spears britney</span>
+<span class="t-out">  Top 1 results for "spears britney":
+  1. DocID: 0 | Score: </span><span class="t-hi">6.29499</span>
+<span class="t-out">     Preview: spears seeks aborted tour payment singer britney spears suing eight...
+
+</span><span class="t-prompt">&gt;</span> <span class="t-cmd">/df spears</span>
+<span class="t-out">  Document frequency of "spears": </span><span class="t-hi">1</span><span class="t-out"> document(s)
+
+</span><span class="t-prompt">&gt;</span> <span class="t-cmd">/tf 0 spears</span>
+<span class="t-out">  "spears" appears </span><span class="t-hi">5</span><span class="t-out"> time(s) in document 0
+
+</span><span class="t-prompt">&gt;</span> <span class="t-cmd">/search hello</span>
+<span class="t-out">  No matching documents found!
+
+</span><span class="t-prompt">&gt;</span> <span class="t-cmd">/exit</span>
+<span class="t-out">  Thank you for using my mini search engine!
+  Exiting Search Engine...</span></code></pre>
+  </div>
+
+  <!-- 09 BUILD -->
+  <h2 class="reveal"><span class="h2-num">09</span> Build &amp; Run</h2>
+  <span class="code-label reveal">Compile</span>
+  <pre class="reveal"><code>g++ -std=c++17 \
+    src/main.cpp \
+    src/parser/parser.cpp \
+    src/index/trie.cpp \
+    src/ranking/bm25.cpp \
+    src/search/search.cpp \
+    src/cli/commandloop.cpp \
+    -o bin/minisearch</code></pre>
+  <span class="code-label reveal">Run</span>
+  <pre class="reveal"><code>./minisearch</code></pre>
+  <span class="code-label reveal">Input format — data/docs.txt</span>
+  <pre class="reveal"><code><span style="color:#555">// Each line = one document. First token = document ID.</span>
+0 The quick brown fox leaped over the lazy dog
+1 Rapper films music video in jail in New Orleans</code></pre>
+
+  <!-- 10 COMPLEXITY -->
+  <h2 class="reveal"><span class="h2-num">10</span> Time Complexity</h2>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>Operation</th><th>Complexity</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Parsing</td><td><code>O(N × L)</code></td><td>N = docs, L = avg words/doc. One-time cost.</td></tr>
+        <tr><td>Index build</td><td><code>O(N × L × M)</code></td><td>M = avg word length (~5 chars). One-time cost.</td></tr>
+        <tr><td>Trie lookup</td><td><code>O(M)</code></td><td>Per word. Extremely fast.</td></tr>
+        <tr><td>Search scoring</td><td><code>O(Q × n)</code></td><td>Q = query words, n = avg postings list length.</td></tr>
+        <tr><td>Result sorting</td><td><code>O(D log D)</code></td><td>D = number of matching documents.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 11 IMPROVEMENTS -->
+  <h2 class="reveal"><span class="h2-num">11</span> Potential Improvements</h2>
+  <div class="improvements">
+    <div class="imp-item reveal">
+      <span class="imp-tag">PERF</span>
+      <div class="imp-text"><strong>Min-Heap for Top-K</strong> — replace full sort with a priority queue for O(N log K) instead of O(N log N) at scale.</div>
+    </div>
+    <div class="imp-item reveal">
+      <span class="imp-tag">STORAGE</span>
+      <div class="imp-text"><strong>Persistent Index</strong> — serialize the Trie to disk so the index doesn't need rebuilding on every run.</div>
+    </div>
+    <div class="imp-item reveal">
+      <span class="imp-tag">QUERY</span>
+      <div class="imp-text"><strong>Phrase Search</strong> — support <code>"britney spears"</code> as an exact phrase query using positional posting lists.</div>
+    </div>
+    <div class="imp-item reveal">
+      <span class="imp-tag">NLP</span>
+      <div class="imp-text"><strong>Stemming</strong> — treat "running", "runs", "ran" as the same token using a Porter Stemmer to improve recall.</div>
+    </div>
+    <div class="imp-item reveal">
+      <span class="imp-tag">SCALE</span>
+      <div class="imp-text"><strong>Skip Lists</strong> — speed up postings list traversal for very high-frequency words at large scale.</div>
+    </div>
+  </div>
+
 </div>
 
 <footer>
-  <span class="footer-txt">Mini Search Engine</span>
+  <span class="footer-txt">Mini Search Engine — Karttikeya Veer Shahi</span>
   <div class="proj-nav">
     <a href="project-tumor.html">Next project →</a>
   </div>
 </footer>
 
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+      }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
